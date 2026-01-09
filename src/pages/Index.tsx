@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
 
@@ -31,27 +31,25 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFDEE2] via-[#E5DEFF] to-[#FDE1D3]">
-      <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
-        <DialogContent className="sm:max-w-md border-none shadow-2xl bg-white/95 backdrop-blur">
-          <DialogHeader>
-            <DialogTitle className="text-center">
-              <div className="flex flex-col items-center gap-4 py-4">
-                <div className="text-6xl animate-scale-in">💐</div>
-                <h2 className="text-4xl font-light text-primary">Дима & Лиза</h2>
-                <div className="h-px w-32 bg-gradient-to-r from-transparent via-primary to-transparent" />
-                <p className="text-lg text-muted-foreground font-normal">
-                  Приглашают вас на торжество
-                </p>
-              </div>
-            </DialogTitle>
-          </DialogHeader>
-          <div className="text-center pb-4">
-            <Button onClick={() => setShowWelcome(false)} size="lg" className="rounded-full">
-              Открыть приглашение
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {showWelcome && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <Card className="w-full max-w-md mx-4 p-8 border-none shadow-2xl bg-white/95 backdrop-blur animate-scale-in">
+            <div className="flex flex-col items-center gap-4 py-4">
+              <div className="text-6xl">💐</div>
+              <h2 className="text-4xl font-light text-primary">Дима & Лиза</h2>
+              <div className="h-px w-32 bg-gradient-to-r from-transparent via-primary to-transparent" />
+              <p className="text-lg text-muted-foreground font-normal text-center">
+                Приглашают вас на торжество
+              </p>
+            </div>
+            <div className="text-center pt-4">
+              <Button onClick={() => setShowWelcome(false)} size="lg" className="rounded-full">
+                Открыть приглашение
+              </Button>
+            </div>
+          </Card>
+        </div>
+      )}
 
       <div className="container mx-auto px-4 py-12">
         <header className="text-center mb-16 animate-fade-in">
